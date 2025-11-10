@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collaborative Drawing Canvas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Collaborative Drawing Canvas</h1>
+            <div class="user-info">
+                <span id="user-count">0 users online</span>
+                <span id="user-color" class="color-indicator"></span>
+            </div>
+        </header>
+
+        <div class="toolbar">
+            <div class="tool-group">
+                <button id="brush-tool" class="tool active" data-tool="brush">🖌️ Brush</button>
+                <button id="eraser-tool" class="tool" data-tool="eraser">🧽 Eraser</button>
+            </div>
+            
+            <div class="tool-group">
+                <label>Size:</label>
+                <input type="range" id="brush-size" min="1" max="50" value="5">
+                <span id="size-value">5px</span>
+            </div>
+            
+            <div class="tool-group">
+                <label>Color:</label>
+                <input type="color" id="brush-color" value="#000000">
+                <div class="color-presets">
+                    <div class="color-preset" style="background-color: #000000;" data-color="#000000"></div>
+                    <div class="color-preset" style="background-color: #ff0000;" data-color="#ff0000"></div>
+                    <div class="color-preset" style="background-color: #00ff00;" data-color="#00ff00"></div>
+                    <div class="color-preset" style="background-color: #0000ff;" data-color="#0000ff"></div>
+                    <div class="color-preset" style="background-color: #ffff00;" data-color="#ffff00"></div>
+                </div>
+            </div>
+            
+            <div class="tool-group">
+                <button id="undo-btn" class="action-btn">↶ Undo</button>
+                <button id="redo-btn" class="action-btn">↷ Redo</button>
+                <button id="clear-btn" class="action-btn danger">Clear</button>
+            </div>
+        </div>
+
+        <div class="canvas-container">
+            <canvas id="drawing-canvas" width="1200" height="700"></canvas>
+            <div id="cursors-container"></div>
+        </div>
+
+        <div class="users-panel">
+            <h3>Online Users</h3>
+            <div id="users-list"></div>
+        </div>
+
+        <div class="status-bar">
+            <span id="connection-status">Connecting...</span>
+            <span id="latency-display">Latency: --ms</span>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="websocket.js"></script>
+    <script src="canvas.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
